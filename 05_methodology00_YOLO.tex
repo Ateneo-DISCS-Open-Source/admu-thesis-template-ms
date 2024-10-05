@@ -1,0 +1,7 @@
+\section{YOLOv3}
+
+ YOLOv3 (You Only Look Once version 3) is a convolutional neural network (CNN) under the YOLO family capable of detecting objects and their respective class in a single evaluation. 
+
+ The network is composed of a backbone network called Darknet-53, a neural network consisting of 53 convolutional layers that can extract numerous features from input images at multiple scales. Additionally, it utilizes a scale prediction method similar to a feature pyramid to detect objects in different scales \cite{redmonYOLOv3IncrementalImprovement2018}. This method alongside Darknet-53 allow YOLOv3 to detect objects and predict its categories at different scales and resolutions, resulting to the network being more accurate and robust to changes in object size and aspect ratio.
+
+YOLOv3 uses several additional techniques such as multi-scale training and anchor boxes to further improve model performance. The multi-scale training technique allows the model to detect objects of different sizes by training it on images of various resolutions, whilst the anchor boxes are dimension clusters that predict the bounding boxes. A confidence score is added to the boxes to visualize the bounding box precision as well as the class prediction when an object is identified \cite{redmonYOLOv3IncrementalImprovement2018}. 

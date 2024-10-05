@@ -1,0 +1,74 @@
+\appendix{Raw Results of Statistical Analysis Test: Clear and Occluded}
+\centering
+\begin{tabular}{ccccc}
+        & \multicolumn{1}{l}{baseline} & \multicolumn{1}{l}{YOLO-BAM} & \multicolumn{1}{l}{DSC}       & \multicolumn{1}{l}{DSCBAM} \\ \hline
+clear 1     & 79.365 & 84.127 & 73.016 & 69.841 \\ \hline
+clear 2     & 98.485 & 98.485 & 98.785 & 100    \\ \hline
+clear 3     & 92.308 & 92.308 & 64.103 & 74.359 \\ \hline
+clear 4     & 96.296 & 100    & 88.889 & 85.185 \\ \hline
+clear 5     & 92.308 & 97.436 & 74.359 & 71.795 \\ \hline
+clear 6     & 96.667 & 98.333 & 73.333 & 75     \\ \hline
+clear 7     & 82.222 & 84.444 & 77.778 & 80     \\ \hline
+clear 8     & 91.304 & 92.754 & 79.71  & 79.71  \\ \hline
+clear 9     & 87.879 & 93.939 & 69.697 & 81.818 \\ \hline
+clear 10    & 100    & 100    & 87.879 & 81.818 \\ \hline
+occluded 1  & 77.193 & 78.947 & 64.035 & 66.667 \\ \hline
+occluded 2  & 66.667 & 64.646 & 46.465 & 55.556 \\ \hline
+occluded 3  & 73.81  & 72.619 & 54.762 & 48.81  \\ \hline
+occluded 4  & 68.519 & 67.593 & 58.333 & 61.111 \\ \hline
+occluded 5  & 67.857 & 67.857 & 60.714 & 64.286 \\ \hline
+occluded 6  & 66.667 & 77.451 & 44.118 & 47.059 \\ \hline
+occluded 7  & 64     & 73.333 & 53.333 & 58.667 \\ \hline
+occluded 8  & 58.333 & 55     & 53.333 & 41.667 \\ \hline
+occluded 9  & 82.796 & 76.344 & 61.29  & 72.043 \\ \hline
+occluded 10 & 82.716 & 83.951 & 60.494 & 66.667 \\ \hline
+\end{tabular}
+
+\appendix{Raw Results of Statistical Analysis Test: Distant and Crowded}
+\centering
+\begin{tabular}{ccccc}
+          & \multicolumn{1}{l}{baseline} & \multicolumn{1}{l}{YOLO-BAM} & \multicolumn{1}{l}{DSC}        & \multicolumn{1}{l}{DSCBAM} \\ \hline
+distant 1  & 67.708 & 77.083 & 55.208 & 58.333 \\ \hline
+distant 2 & 68.027  & 69.388 & 59.184 & 63.265 \\ \hline
+distant 3  & 75.225 & 75.676 & 61.712 & 67.568 \\ \hline
+distant 4  & 65.079 & 64.286 & 53.968 & 60.317 \\ \hline
+distant 5  & 75.532 & 77.66  & 58.511 & 59.574 \\ \hline
+distant 6  & 78.283 & 78.788 & 60.101 & 67.172 \\ \hline
+distant 7  & 67.485 & 68.712 & 52.147 & 55.828 \\ \hline
+distant 8  & 78.986 & 76.812 & 68.116 & 74.638 \\ \hline
+distant 9  & 75.117 & 69.953 & 65.728 & 70.892 \\ \hline
+distant 10 & 68.323 & 65.217 & 60.248 & 59.627 \\ \hline
+crowded 1  & 80.412 & 81.701 & 66.495 & 73.711 \\ \hline
+crowded 2  & 80.108 & 81.989 & 67.204 & 67.742 \\ \hline
+crowded 3  & 74.783 & 77.681 & 68.12  & 72.464 \\ \hline
+crowded 4  & 75.13  & 75.648 & 69.948 & 67.876 \\ \hline
+crowded 5  & 82.353 & 81.793 & 75.35  & 76.751 \\ \hline
+crowded 6  & 75.824 & 74.451 & 53.022 & 58.516 \\ \hline
+crowded 7  & 79.404 & 81.843 & 70.19  & 76.965 \\ \hline
+crowded 8  & 73.219 & 73.789 & 62.963 & 66.382 \\ \hline
+crowded 9  & 71.35  & 78.788 & 63.912 & 72.727 \\ \hline
+crowded 10 & 80.311 & 77.461 & 59.585 & 69.43  \\ \hline
+\end{tabular}
+
+\appendix{Results of two-tailed paired t-test}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccc}
+\textbf{} & baseline to YOLO-BAM & baseline to DSC & baseline to DSCBAM \\ \hline
+Clear    & 0.007084198745 & 0.004025810362   & 0.00111201475                           \\ \hline
+Occluded & 0.6011949895   & 0.0002156719465  & 0.0002129241569 \\ \hline
+Distant  & 0.7640424888   & 0.00003038205961 & 0.00008891661591                        \\ \hline
+Crowded  & 0.2004958595   & 0.00007868291236 & 0.002686019099                          \\ \hline
+\end{tabular}%
+}
+
+
+\appendix{Conference Paper}
+YOLO-BAM: Integrating CBAM to the YOLOv3 Model for Pedestrian Detection in Images\\
+Jason C. Eclarinal, Dr. Raphael B. Alampay\\
+The 5th International Conference on Digital
+Media and Information Processing (DMIP 2023)\\
+Submitted: June 30, 2023\\
+Accepted: September 1, 2023\\
+
+\includepdf[pages={1-6}, fitpaper=true]{papers/WSSE2023_W4057_combined_v2.pdf}

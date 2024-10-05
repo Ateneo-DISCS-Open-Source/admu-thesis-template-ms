@@ -1,0 +1,40 @@
+# LaTeX intermediate and output files
+*.aux
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
+*.dvi
+*.ps
+*.pdf
+*.nav
+*.snm
+
+# Editor backup files
+*~
+*.bak
+
+# macOS specific files
+.DS_Store
+
+# LaTeX editor-specific files
+*.swp
+*.swo
+
+# Generated bibliography files
+*.bbl
+*.bcf
+*.run.xml
+
+# Ignore output
+main.pdf

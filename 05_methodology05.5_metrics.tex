@@ -1,0 +1,10 @@
+\section{Metrics}
+\subsection{Mean Average Precision (mAP)}
+The mean average precision (mAP) serves as a vital metric for assessing the accuracy of detecting pedestrians in diverse scenarios. This metric measures the models' ability to accurately identify pedestrians amidst varying environmental conditions, such as different lighting, occlusions, and crowd densities. Higher mAP scores, using the formula
+\[\text{mAP} = \frac{1}{C} \sum_{c=1}^{C} \text{AP}_c\]
+indicate superior performance in accurately identifying pedestrians.
+
+\subsection{Loss}
+The loss function measures the disparity between the predicted output of the model and the ground truth labels for pedestrian detection. Lower loss values indicate improved performance in capturing the nuances of pedestrian appearances and spatial relationships in varying environments. The cross-entropy loss will be used in the study:
+\[\text{Cross-Entropy Loss} = - \frac{1}{N} \sum_{i=1}^{N} \left( y_i \cdot \log(p_i) + (1 - y_i) \cdot \log(1 - p_i) \right)\]
+where \(N\) is the number of samples in the dataset, \(y_i\) is the true label of the \(i\)-th sample, and \(p_i\) is the predicted probability of the \(i\)-th sample belonging to the positive class.

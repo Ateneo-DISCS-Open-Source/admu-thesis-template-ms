@@ -1,0 +1,233 @@
+\documentclass[oneside,12pt]{discsthesis_updated_single_adv}
+\usepackage[x11names, rgb, table,dvipsnames,svgnames]{xcolor}
+\usepackage{soul}
+\usepackage{import}
+\usepackage{graphicx}
+ \usepackage{amsmath}
+ \usepackage{amsfonts}
+ % \usepackage{subfigure}
+ \usepackage{subcaption}
+ \usepackage{caption}
+ \usepackage{multirow}
+ \usepackage{fancyvrb}
+ \usepackage{tabularx}
+ \usepackage[titletoc]{appendix} 
+ \usepackage{pgf}
+ \usepackage{tikz}
+ \usetikzlibrary{shapes.geometric, arrows}
+ % \usepackage{subcaption}
+ \usepackage{amsmath}
+ \usepackage[newfloat]{minted}
+ \usepackage{caption}
+ \usepackage{listings}
+ \usepackage{hyperref}
+ \usepackage{svg}
+ \usepackage{subfig}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage[markup=underlined]{changes}
+% \usepackage{todonotes}
+\usepackage[left=1.55in, right=1.2in, top=1in, bottom=1.7in, a4paper]{geometry}
+\usepackage{rotating}
+\usepackage{tikz}
+\usepackage{hhline}
+\usepackage[T1]{fontenc}
+\usepackage{colortbl} 
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{multirow}
+
+
+
+
+ 
+
+
+
+\newcommand*{\MyIndent}{\hspace*{0.5cm}}%
+
+\setminted{fontsize=\small,baselinestretch=1}
+
+% Creates a Query Environment
+\newenvironment{query}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Query}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Code}
+
+% Changes the title of List of Listings
+\renewcommand\lstlistingname{SOURCECODE}
+\renewcommand\lstlistlistingname{LIST OF SOURCECODES}
+
+% Allows the addition of descriptive words (CHAPTER) to TOC
+\newcommand{\adddescriptivetexttotoc}[2][part]{%
+  \cleardoublepage
+  \addtocontents{toc}{\protect\contentsline{#1}{#2}{}{}}
+}
+
+\newcommand{\adddescriptivetexttolof}[2][part]{%
+  \cleardoublepage
+  \addtocontents{lof}{\protect\contentsline{#1}{#2}{}{}}
+}
+
+\newcommand{\adddescriptivetexttolot}[2][part]{%
+  \cleardoublepage
+  \addtocontents{lot}{\protect\contentsline{#1}{#2}{}{}}
+}
+% \renewcommand{\listfigurename}{\normalsize\underline{Figure No.}\hfill
+% Changes Link Colors
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\pdfstringdefDisableCommands{%
+\let\MakeUppercase\relax
+}
+
+% \definechangesauthor[color=BrickRed]{JLM}
+\definechangesauthor[color=NavyBlue]{zenon}
+
+%\setremarkmarkup{\todo[color=Changes@Color#1!20,size=\scriptsize]{1:,2}}
+\newcommand{\note}[2][]{\added[#1,remark={#2}]{}}
+
+
+ % Allows the usage of the PGF environment for more professional graphs
+ \makeatletter
+\def\@xfloat #1[#2]{%
+  \@nodocument
+  \def \@captype {#1}%
+   \def \@fps {#2}%
+   \@onelevel@sanitize \@fps
+   \def \reserved@b {!}%
+   \ifx \reserved@b \@fps
+     \@fpsadddefault
+   \else
+     \ifx \@fps \@empty
+       \@fpsadddefault
+     \fi
+   \fi
+   \ifhmode
+     \@bsphack
+     \@floatpenalty -\@Mii
+   \else
+     \@floatpenalty-\@Miii
+   \fi
+  \ifinner
+     \@parmoderr\@floatpenalty\z@
+  \else
+    \@next\@currbox\@freelist
+      {%
+       \@tempcnta \sixt@@n
+       \expandafter \@tfor \expandafter \reserved@a
+         \expandafter :\expandafter =\@fps
+         \do
+          {%
+           \if \reserved@a h%
+             \ifodd \@tempcnta
+             \else
+               \advance \@tempcnta \@ne
+             \fi
+           \fi
+           \if \reserved@a t%
+             \@setfpsbit \tw@
+           \fi
+           \if \reserved@a b%
+             \@setfpsbit 4%
+           \fi
+           \if \reserved@a p%
+             \@setfpsbit 8%
+           \fi
+           \if \reserved@a !%
+             \ifnum \@tempcnta>15
+               \advance\@tempcnta -\sixt@@n\relax
+             \fi
+           \fi
+           }%
+       \@tempcntb \csname ftype@\@captype \endcsname
+       \multiply \@tempcntb \@xxxii
+       \advance \@tempcnta \@tempcntb
+       \global \count\@currbox \@tempcnta
+       }%
+    \@fltovf
+  \fi
+  \global \setbox\@currbox
+    \color@vbox
+      \normalcolor
+      \vbox \bgroup
+        \hsize\columnwidth
+        \@parboxrestore
+        \@floatboxreset
+}
+
+\makeatother
+ 
+\begin{document}
+\ThesisAuthor{First Name M. Last Name}
+\ThesisTitle{Your Thesis Title}
+\ThesisArea{Computer Science}
+\ThesisDefenseYear{DECEMBER 2024}
+  \DefenseDate{November 7, 2023} %March 31
+  \ThesisGrade{B+ (Good)}
+
+  \ThesisAdviser{RAPHAEL B. ALAMPAY, Ph.D.}
+  % Use this if you have two advisers
+  %\ThesisCoAdviser{PATRICIA ANGELA R. ABU, Ph.D.}
+  \DepartmentHead{PATRICIA ANGELA R. ABU, Ph.D.}
+  \SchoolHead{RAPHAEL A. GUERRERO, Ph.D.}
+  \FirstPanelMember{MARIA REGINA JUSTINA E. ESTUAR, Ph.D.}
+  \SecondPanelMember{ARIEL A. MAGUYON, Ph.D.}
+  \ThirdPanelMember{ABRAHAM T. MAGPANTAY, M.S.}
+
+  \ThesisStyle{MS}{Final}{-10pt}{15pt}
+  % Choices for the 1st argument: MS, PhD
+  % Choices for the 2nd argument: Final, FinalWithCorner, Draft
+%   \ThesisRecommendationPage
+% \MSThesisAcceptancePage
+%   \FrontMatter
+  \input{01_abstract}
+  \input{02_acknowledgements}
+
+
+%   \addcontentsline{toc}{chapter}{\lstlistlistingname}
+%   \newpage
+  \tableofcontents
+  \listoffigures
+  \listoftables
+%   \lstlistoflistings
+  \adddescriptivetexttotoc{\normalsize\textnormal{CHAPTER}}
+\adddescriptivetexttolof{\normalsize\textnormal{Figures \hspace*{\fill} Page}}
+\adddescriptivetexttolot{\normalsize\textnormal{Tables \hspace*{\fill} Page}}
+  \hypersetup{linkcolor=blue!30!black}
+  
+  \begin{spacing}{1.8}
+
+%   \MainMatter
+  \input{03_introduction_00}
+  \input{04_relatedliterature}
+  \input{05_methodology}
+  \input{06_results}
+  \input{07_conclusions}
+  \input{08_recommendations}
+     \end{spacing}
+
+
+ % BIBLIOGRAPHY
+ \input{10_references}
+ % \BackMatter
+%  \bibliographystyle{unsrt}
+ % \bibliographystyle{plain}
+% \bibliographystyle{IEEEtran}
+ % \bibliography{Proposal_Manuscript}
+
+\addappheadtotoc
+\begin{appendices}
+\input{09_appendices}
+\end{appendices}
+ 
+\end{document}

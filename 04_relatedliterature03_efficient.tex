@@ -1,0 +1,42 @@
+\section{Defining 'Efficient'} \label{efficient}
+
+\begin{table}[!htbp]
+    \centering
+    \caption{YOLO framework models}
+    \resizebox{0.85\linewidth}{!}
+    {
+    \begin{tabular}{c c c c}
+        \hline
+        Study/Model & Parameters & Results & Comparison\\
+        \hline
+        YOLOv3-tiny & 9 M & 33.1\% (mAP) & 60.6\% (YOLOv3)\\
+        \hline
+        \cite{chakarDepthwiseSeparableConvolutions2020} & 3 M & 65.42\% (mAP) & 71.48\% (YOLOv3)\\
+        \hline
+        \cite{liYOLOv3LiteLightweightCrack2019} & 31 M &  38.7\% (AP) & 43.1\% (YOLOv3)\\
+        \hline
+        \cite{liberatoriYOLOBasedFaceMask2022} & 2.5 M & 58.7\% (mAP) & 61.8\% (YOLOv4-tiny) \\
+        \hline
+        
+    \end{tabular}
+    }
+    \label{tab:'efficient'-examples}
+\end{table}
+
+The study defines a model as 'efficient' if it can reduce the baseline model's parameters by 55\%, whilst having a maximum reduction in accuracy of 7\%. This metric was made in comparing the results of a study achieving around a 50\% reduction in the base model \cite{liYOLOv3LiteLightweightCrack2019}, and another which resulted in a 6\% accuracy reduction \cite{chakarDepthwiseSeparableConvolutions2020}.
+
+Table \ref{tab:'efficient'-examples} presents studies and models that reduced their model sizes while maintaining comparable accuracy scores. It is noted that YOLOv3 has around 61 million parameters, whilst YOLOv4-tiny only has 9.1 million. \break
+YOLOv3-tiny aimed to reduce the size and increase the detection speed, but it can be seen that the mAP was reduced by over 20\%. However, other studies achieved substantial reductions in the original model with only a slight decrease in performance. 
+
+\subsubsection{Efficient Models} \label{efficient_ex}
+Over the years, significant progress has been made in the field of computer vision, leading to the development of efficient models for object detection and recognition. Researchers have been dedicated to enhancing computational efficiency, optimizing performance, and improving accuracy in these models. One study focused on pedestrian detection with severe overlapping and achieved high accuracy rates using MobileNet with a single shot detector, operating at an impressive FPS of 13 to 14 \cite{ahmedEnhancedVulnerablePedestrian2019}. Other studies have explored the use of more lightweight models or integrated additional modules for improved performance, with one introducing a CSPNet and an ECA channel attention module to a YOLOv3 model, simplifying calculation costs and reducing complexity, resulting in a higher mAP rate of 93.89\% compared to the base model's 89.88\% \cite{gongPedestrianDetectionAlgorithm2022}.
+
+To tackle the computational costs associated with YOLOv3, researchers have employed various techniques. A study developed model variants that replaced convolutional layers with depthwise separable convolutions, with its best performing model significantly reducing the number of trainable parameters by over 70\% while maintaining a marginal accuracy reduction of only 3\% \cite{chakarDepthwiseSeparableConvolutions2020}. 
+
+Another modified the YOLOv3 model by incorporating depthwise separable convolutions and a feature pyramid for crack detection in aircraft structures \cite{liYOLOv3LiteLightweightCrack2019}. This optimized model generated 50\% fewer parameters and was nearly 50\% faster in detecting cracks compared to the base model.
+
+In addition to depthwise separable convolutions, filter pruning has been employed to further reduce model parameters. Researchers achieved a reduction of over 70\% in model size for the YOLOv3-tiny model, with a minimal decrease in performance of only nearly 2\% \cite{qianEfficientModelCompression2018}. Another group successfully utilized filter pruning for detecting face masks, reducing parameter count by over 72.5\% with a decrease in accuracy of only slightly over 3\% \cite{liberatoriYOLOBasedFaceMask2022}. Other techniques, such as quantization and knowledge distillation, have been combined with filter pruning in certain studies \cite{endrawatiYOLOv3TinyWeight2021, shiOptimizedYolov3Deployment2021, wuModelCompressionBased2021}.
+
+Moreover, researchers have explored the use of attention blocks to improve performance. One study enhanced the YOLOv3-tiny model for fire detection by replacing and adding new layers and incorporating an SE channel attention module \cite{liFireObjectDetection2022}. Its modified model achieved a higher mAP rate of 80.8\%, surpassing the original network's precision by 5.9\%. Another study replaced specific convolutional layers in the detection head and neck of YOLOv3 with a combination of depthwise separable convolutions and squeeze-and-excitation blocks, resulting in a parameter count of approximately 7 million and an mAP (0.5) of 39.9\%, compared to the baseline model's 55.3\% \cite{sunYoloBasedLightweightObject2023}.
+
+These diverse approaches and techniques reflect the ongoing efforts to enhance the performance and efficiency of YOLOv3 models for various applications in computer vision.

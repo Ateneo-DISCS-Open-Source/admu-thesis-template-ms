@@ -1,0 +1,12 @@
+\subsection{Scope and Limitations of the Study}
+The findings and recommendations that may be found may be limited to the datasets used in this study.
+
+The study focused on the development and comparison of the various model variants. It did not focus on the deployment and testing of the model on various hardware platforms. A previous study has shown that VGG16, a neural network with a parameter count of 138 million parameters \cite{simonyanVeryDeepConvolutional2015} was capable of running on a Raspberry Pi 4 Model B \cite{lopezRealtimeFaceMask2021}, it is assumed that the proposed model will be capable of running in that system. 
+
+The study sought to identify pedestrians in public spaces using YOLOv3 model variants that made use of one or more techniques. The identification of other objects were not included.
+
+The study did not explore the various pruning percentages as that will create too many variations. The pruning percentage remained at 30\%.
+
+The models developed in this study is not intended nor developed for the purpose of personal identification. The focus of the study is on the development of state-of-the-art techniques for effective pedestrian detection in surveillance scenarios. The emphasis is on enhancing the efficiency and accuracy of detection while upholding ethical considerations regarding privacy and personal identification.
+
+The study did not perform any extensive preprocessing techniques to the datasets the models used to train and simulate. The preprocessing performed is to format the images so that they may correctly work with the model variants.

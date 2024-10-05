@@ -1,0 +1,22 @@
+\section{Pedestrian Detection Datasets}
+\subsubsection{COCO}
+The Common Objects in Context (COCO) dataset developed by the Microsoft research team is one of the largest image datasets suitable for the tasks of classification, segmentation, and captioning. The COCO 2017 dataset on Kaggle consists of over 118,000 trainable images which are labeled with multiple bounding boxes categorized into 80 classes such as 'bicycle' and 'car', as well as approximately 40,700 images for training. For the purposes of this study however, the YOLOv3 model was trained to classify images for the 'person' class.
+\subsubsection{MOT}
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{images/MOT-02.png}
+  \caption{A MOT17-02-SDP sequence frame}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{images/MOT-04.png}
+  \caption{A MOT17-04-SDP sequence frame}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{MOT17 Sequence showcase}
+\label{fig:mot}
+\end{figure}
+The MOT17 (Multiple Object Tracking) dataset is a comprehensive benchmark in the field of computer vision and object tracking, offering a diverse collection of high-definition video sequences for multi-object tracking research. Comprising 14 distinct sequences with various challenges, such as occlusions, scale variations, and crowded scenarios, MOT17 provides ground truth annotations for tracking multiple objects over extended time frames. The study made use of two select sequences from the 2017 version of the dataset shown in figure \ref{fig:mot}, namely MOT17-02-SDP and MOT17-04-SDP whose camera positions remain static and reflect a normal and elevated viewpoint, respectively. The MOT17-02-SDP sequence contains 600 frames whereas the MOT17-04-SDP sequence contains 1050 frames.

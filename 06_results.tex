@@ -1,0 +1,454 @@
+\chapter {RESULTS AND ANALYSIS} \label{results}
+\section{Results}
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.91\linewidth]{images/ModelAccuracy.png}
+  \caption{Model Accuracy Comparison}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{images/ModelLoss.png}
+  \caption{Model Loss Comparison}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Model accuracy and loss charts}
+\label{fig:resultchart}
+\end{figure}
+
+\begin{table}[!htbp]
+    \centering
+    \caption{Model final accuracy, loss and mAP values}
+    {
+    \begin{tabular}{cccc}
+        Model & Accuracy & Loss & mAP\\ \hline 
+        baseline & 76.696\% & 2.54 & 0.56\\ 
+        \hline 
+        YOLO-BAM & 79.306\% & 2.5 & 0.55\\ 
+        \hline 
+        DSC & 64.399\% & 3.58 & 0.36\\ 
+        \hline 
+        DSCBAM & 67.048\% & 3.33 & 0.38\\
+        \hline
+    \end{tabular}
+    }
+    \label{tab:modelperfs}
+\end{table}
+
+The study revealed significant differences in the performance of the model variants. The baseline and the CBAM variant both exhibited a final accuracy of 79.3\%, marking a 2.6\% increase compared to the baseline model's final accuracy of 76.7\% (as shown in Table \ref{tab:modelperfs}). 
+
+In contrast, the DSC and DSCBAM models lagged behind, achieving final accuracies of 64.4\% and 67.0\%, respectively. Interestingly, the trend of the DSCBAM model closely paralleled the trajectory of YOLO-BAM in that they obtained a slightly higher performance than their non-CBAM counterparts.
+
+The training duration for YOLO-BAM and DSCBAM extended beyond 2 hours per epoch, while the baseline required slightly under 1.5 hours, and DSC just over 45 minutes to complete an epoch. It is also in particular note that retraining the pruned model variants took a similar amount of time as their unpruned versions.
+
+The loss chart depicted a striking resemblance between YOLO-BAM and the baseline, with both pairs culminating at a final loss value of 2.54 and 2.5, respectively. The DSC and DSCBAM models exhibited a comparable pattern, concluding with final loss values of 3.58 and 3.33, respectively.
+
+Following the analysis of the model variants, it is evident that the mean Average Precision (mAP) results provide an additional layer of insight into their performance. The baseline and YOLO-BAM models achieved relatively close mAP values of 0.56 and 0.55, respectively. This suggests that the integration of CBAM into the YOLOv3 model in YOLO-BAM did not significantly impact mAP, further reinforcing the findings from the accuracy and loss metrics.
+
+However, the DSC and DSCBAM models displayed a noticeable performance gap compared to the baseline and YOLO-BAM. DSC yielded an mAP of 0.36, while DSCBAM performed slightly better, with an mAP of 0.38. These lower mAP values can be attributed to the unique model configurations and optimizations in these variants, which had trade-offs in terms of detection performance.
+
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.91\linewidth]{images/PruneAcc.png}
+  \caption{Pruned model accuracy comparison}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{images/PruneLoss.png}
+  \caption{Pruned model loss Comparison}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Pruned model accuracy and loss charts}
+\label{fig:prunedresultchart}
+\end{figure}
+
+Table \ref{fig:prunedresultchart} displays the post-retraining performance of the various models. The pruned baseline model, along with the pruned YOLO-BAM variant, restored their accuracy to the pre-pruning level after 5 epochs. In contrast, the pruned DSCBAM model required more time to reach a similar accuracy as its unpruned version. Notably, the pruned DSC model struggled to recover during retraining, exhibiting unchanged accuracy and loss.
+
+\begin{table}[!htbp]
+    \centering
+    \caption{Pruned model final accuracy, loss and mAP values}
+    {
+    \begin{tabular}{cccc}
+        Model & Accuracy & Loss & mAP\\ \hline 
+        baseline pruned & 75.341\% & 2.85 & 0.44\\ 
+        \hline 
+        YOLO-BAM pruned & 77.879\% & 2.88 & 0.48\\ 
+        \hline 
+        DSC pruned & 0\% & 9.72 & 0\\ 
+        \hline 
+        DSCBAM pruned & 60.599\% & 4.19 & 0.273\\
+        \hline
+    \end{tabular}
+    }
+    \label{tab:prunedmodelperfs}
+\end{table}
+
+\begin{table}[!htbp]
+    \centering
+    \caption{Model Parameter Count Before and After Pruning}
+    \resizebox{0.95\linewidth}{!}
+    {
+    \begin{tabular}{cccc}
+          Model& Parameter Count & Pruned Count & Reduction Percentage\\
+          \hline
+          baseline & 61,523,842 & 60,878,316 & 1.0498\% \\
+          \hline
+          YOLO-BAM & 64,895,494 & 64,882,156 & 0.0204\% \\
+          \hline
+          DSC & 17,603,549 & 17,570,796 & 0.1862\% \\
+          \hline
+          DSCBAM & 20,975,201 & 20,937,516 & 0.1792\% \\
+          \hline
+    \end{tabular}
+    }
+    \label{tab:modelparaprunes}
+\end{table}
+
+Table \ref{tab:modelparaprunes} presents the parameter counts of the model variants before and after pruning. Notably, the baseline model exhibited a modest reduction in parameters after pruning. In comparison, the YOLO-BAM, DSC, and DSC + CBAM models saw slight reductions in parameter counts. These findings reflect the impact of pruning on the overall model complexity, contributing to enhanced computational efficiency without significant parameter loss.
+
+It is with tables \ref{tab:modelparaprunes} and \ref{tab:prunedmodelperfs} in mind that the pruned baseline and YOLO-BAM models also returned to a similar level of accuracy in a relatively short amount of epochs, though the respective loss values and mAP of all pruned variants were considerably lower than their unpruned counterparts. 
+
+The results of the parameter analysis, as presented in table \ref{tab:modelparaprunes}, provide insights into the computational efficiency of the model variants. When comparing the parameter counts of YOLOv3, YOLO-BAM, DSC, and DSCBAM, it is observed that the integration of CBAM into YOLOv3 results in a minor increase in the number of parameters when comparing baseline to YOLO-BAM and the DSC model to DSCBAM. However, this increment does not significantly impact the model's overall computational efficiency. Notably, YOLO-BAM maintains performance levels nearly on par with the baseline YOLOv3, underscoring the feasibility of enhancing YOLOv3 through the addition of CBAM.
+
+% IMAGE COMPARISONS
+The images shown are highlighted examples of scenarios that seek to describe the various complex spatial relationships and the performance of the models.
+
+\subsection{Clear Pedestrians}
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.15\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/tennis.jpg}
+  \caption{Raw}
+  \label{fig:ogtennis}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/base_tennis.png}
+  \caption{Baseline}
+  \label{fig:basetennis}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/CBAM_tennis.png}
+  \caption{YOLO-BAM}
+  \label{fig:cbamtennis}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSC_tennis.png}
+  \caption{DSC}
+  \label{fig:dsctennis}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSCBAM_tennis.png}
+  \caption{DSCBAM}
+  \label{fig:dscbamtennis}
+\end{subfigure}
+\caption{Model image comparison of clear pedestrians}
+\label{fig:tennis}
+\end{figure}
+
+Figure \ref{fig:tennis} features a large unobstructed image of a tennis athlete, with all the models demonstrating proficiency in identifying the individual. This scenario refers to images where people are clearly seen without any occlusions or other factors which make them difficult to be seen.
+
+\subsection{Occluded Pedestrians}
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/newspaper.jpg}
+  \caption{Raw}
+  \label{fig:ognews}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/base_newspaper.png}
+  \caption{Baseline}
+  \label{fig:basenews}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/CBAM_newspaper.png}
+  \caption{YOLO-BAM}
+  \label{fig:cbamnews}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSC_newspaper.png}
+  \caption{DSC}
+  \label{fig:dscnews}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSCBAM_newspaper.png}
+  \caption{DSCBAM}
+  \label{fig:dscbamnews}
+\end{subfigure}
+\caption{Model image comparison of occluded pedestrians}
+\label{fig:news}
+\end{figure}
+
+Figure \ref{fig:news} depicts a person that is partially occluded by a large object and within an area of a bright light source. As compared to the clear individuals, the results are more varied, with YOLO-BAM detecting two people within each other and the baseline mistakenly identifying a part of the object and the light source as people. DSC also incorrectly identifies the light source as a person. DSCBAM on the other hand correctly detects the person in the image without any misidentifications.
+
+\subsection{Distant Pedestrians}
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/bus.jpg}
+  \caption{Raw}
+  \label{fig:ogbus}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/base_bus.png}
+  \caption{Baseline}
+  \label{fig:basebus}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/CBAM_bus.png}
+  \caption{YOLO-BAM}
+  \label{fig:cbambus}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSC_bus.png}
+  \caption{DSC}
+  \label{fig:dscbus}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSCBAM_bus.png}
+  \caption{DSCBAM}
+  \label{fig:dscbambus}
+\end{subfigure}
+\caption{Model image comparison of distant pedestrians}
+\label{fig:bus}
+\end{figure}
+
+Figure \ref{fig:bus} presents people that are farther away from the camera. In this scenario, YOLO-BAM exhibits better detection of the individuals inside the bus compared to the other models, although it also demonstrates challenges alongside the baseline model in accurately identifying the individual outside of the bus potentially due to them not being as visible as the other subjects in the frame. DSC and DSCBAM however identify a person outside the bus, though in both instances the boxes are incorrectly plotted, only targeting a portion of the subject.
+
+\subsection{Crowded Pedestrians}
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.13\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/baseball.jpg}
+  \caption{Raw}
+  \label{fig:ogbaseball}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/base_baseball.png}
+  \caption{Baseline}
+  \label{fig:basebaseball}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/CBAM_baseball.png}
+  \caption{YOLO-BAM}
+  \label{fig:cbambaseball}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSC_baseball.png}
+  \caption{DSC}
+  \label{fig:dscbaseball}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{images/DSCBAM_baseball.png}
+  \caption{DSCBAM}
+  \label{fig:dscbambaseball}
+\end{subfigure}
+\caption{Model image comparison of crowded pedestrians}
+\label{fig:baseball}
+\end{figure}
+
+Figure \ref{fig:baseball} presents a crowd of people behind a clear subject. All the models performed well in correctly identifying the clear subject, but there are mixed results in detecting the people behind. YOLO-BAM performs the best in identifying subjects, though it did plot a bounding box on the entire crowd unlike the other models. DSC and DSCBAM were observed to detect notably lesser people than the baseline and YOLO-BAM models.
+
+% END OF IMAGE COMPARISONS
+
+
+% START OF MOT17 SEQUENCES
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/base_MOT-02.png}
+  \caption{Baseline}
+  \label{fig:baseMOT-02}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/CBAM_MOT-02.png}
+  \caption{YOLO-BAM}
+  \label{fig:cbamMOT-02}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/DSC_MOT-02.png}
+  \caption{DSC}
+  \label{fig:dscMOT-02}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.95\textwidth]{images/DSCBAM_MOT-02.png}
+  \caption{DSCBAM}
+  \label{fig:dscbamMOT-02}
+\end{subfigure}
+\caption{Model image sample of MOT-02-SDP}
+\label{fig:MOT-02}
+\end{figure}
+
+% \begin{table}[!htbp]
+% \centering
+% \begin{tabular}{|l|cc|}
+% \hline
+% \multicolumn{1}{|c|}{\multirow{2}{*}{Model}} & \multicolumn{2}{c|}{MOT-02-SDP}                                \\ \cline{2-3} 
+% \multicolumn{1}{|c|}{}                       & \multicolumn{1}{c|}{Average FPS} & Average Inference Time (ms) \\ \hline
+% baseline   & \multicolumn{1}{c|}{2.93} & 341.08 \\ \hline
+% baseline pruned & \multicolumn{1}{c|}{1.39} & 721.16 \\ \hline
+% YOLO-BAM   & \multicolumn{1}{c|}{3.93} & 254.13 \\ \hline
+% YOLO-BAM pruned & \multicolumn{1}{c|}{2.24} & 446.46 \\ \hline
+% DSC        & \multicolumn{1}{c|}{2.69} & 254.13 \\ \hline
+% DSC pruned      & \multicolumn{1}{c|}{19.28} & 51.87 \\ \hline
+% DSCBAM     & \multicolumn{1}{c|}{2.63} & 380.23 \\ \hline
+% DSCBAM pruned   & \multicolumn{1}{c|}{2.69} & 371.80 \\ \hline
+% \end{tabular}
+% \caption{MOT-02-SDP model performance}
+% \label{fig:mot-02}
+% \end{table}
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth]{images/AveFPS.png}
+  \caption{Average FPS}
+  \label{fig:avefps}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth]{images/AveInfT.png}
+  \caption{Average Inference Time (ms)}
+  \label{fig:aveinft}
+\end{subfigure}
+\caption{MOT metric model comparison}
+\label{fig:motresults}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/base_MOT-04.png}
+  \caption{Baseline}
+  \label{fig:baseMOT-04}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/CBAM_MOT-04.png}
+  \caption{YOLO-BAM}
+  \label{fig:cbamMOT-04}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/DSC_MOT-04.png}
+  \caption{DSC}
+  \label{fig:dscMOT-04}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=0.95\textwidth]{images/DSCBAM_MOT-04.png}
+  \caption{DSCBAM}
+  \label{fig:dscbamMOT-04}
+\end{subfigure}
+\caption{Model image sample of MOT-04-SDP}
+\label{fig:MOT-04}
+\end{figure}
+
+
+Figures \ref{fig:avefps} and \ref{fig:aveinft} display the average FPS and inference times for the various models. It should be noted that the YOLO-BAM model's performance for MOT-04-SDP as well as the pruned DSC model barely generated any bounding boxes during testing. A notable trend is observed as the baseline and DSC models exhibit similar performance in terms of frames per second (FPS), with the baseline showing a slight advantage. However, it is especially interesting to examine the results of the YOLO-BAM and DSCBAM models, which achieved the best and worst performance, respectively, in both sequences. Notably, the YOLO-BAM model generated significantly fewer bounding boxes on the sequences as compared to the other models. Additionally, YOLO-BAM displayed fewer instances of multiple bounding boxes assigned to a single subject.
+
+Another note of observation is the performance of pruned models on the MOT17 sequences. It can be seen from figure \ref{fig:motresults} that the pruned baseline and YOLO-BAM model variants had a lower FPS and higher average inference time in comparison to its unpruned versions. Additionally, the pruned DSC model had a significantly higher frame rate due to it not generating bounding boxes. An interesting note must be observed however with the pruned DSCBAM model obtaining a higher FPS and lower inference time when compared to its unpruned version. Another observation during testing was that the pruned YOLO-BAM model generated bounding boxes to some pedestrians for the MOT-04-SDP sequence unlike its unpruned counterpart.
+
+Figure \ref{fig:basevsp} details an image comparison between the baseline model and its pruned variant.
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{images/base_MOT-02.png}
+  \caption{Baseline}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{images/baseP_MOT-02.png}
+  \caption{Pruned baseline}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Baseline and pruned baseline comparison}
+\label{fig:basevsp}
+\end{figure}
+
+It can be observed that there are significantly more bounding boxes being generated within existing bounding boxes for a single subject as compared to the baseline model. This may explain the FPS and inference time of the pruned model, where it acquired an average FPS of 1.39 and an average inference time of 721.16 ms. Moreover, although retraining the pruned model improved accuracy to a similar level as baseline, it still requires more training to improve other metrics such as mAP and loss.
+
+% END OF MOT17 SEQUENCES
+
+% START OF STATISTICAL ANALYSIS
+\begin{table}[]
+\centering
+\caption{Model variants two-tailed paired t-test p-value results}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccc}
+\textbf{} & baseline to YOLO-BAM & baseline to DSC & baseline to DSCBAM \\ \hline
+Clear    & 0.007084198745 & 0.004025810362   & 0.00111201475                           \\ \hline
+Occluded & 0.6011949895   & 0.0002156719465  & 0.0002129241569 \\ \hline
+Distant  & 0.7640424888   & 0.00003038205961 & 0.00008891661591                        \\ \hline
+Crowded  & 0.2004958595   & 0.00007868291236 & 0.002686019099                          \\ \hline
+\end{tabular}%
+}
+\label{tab:stats}
+\end{table}
+
+
+Table \ref{tab:stats} refer to each respective p-value generated by the model variants when compared to the baseline YOLOv3 model with an alpha of 0.05. It was found that the YOLO-BAM model differs with the baseline model for the clear category and holds a relatively equal level of performance for the other categories. On the other hand, it was found that the results from both the DSC and DSC-BAM model variants differed to the baseline model.
+
+% START OF ANALYSIS SECTION
+\section{Analysis}
+Before the comparison of the model variants is further investigated, several factors must be discussed which may have limited the overall performance of the pedestrian detection task.
+
+One particular factor that can be examined further is the possibility that the dataset or the classes it aimed to identify for this study may not heavily emphasize the types of visual patterns or object instances where CBAM's attention mechanism can provide significant improvements. CBAM is designed to enhance feature representations by attending to informative spatial and channel-wise features \cite{wooCBAMConvolutionalBlock2018}. If the dataset lacks complex spatial relationships or if the baseline YOLOv3 model already captures the necessary information without explicit attention mechanisms, the impact of CBAM may be less pronounced.
+
+The baseline YOLOv3 model's inherent effectiveness must also be considered. YOLOv3 is a leading object detection model, featuring robust architectural components and techniques for capturing object information. The competence of the baseline model in handling the detection task could present challenges for CBAM to introduce significant improvements. Furthermore, the complexity of the YOLOv3 architecture may limit the extent to which CBAM affects overall performance.
+
+The video or image quality of the MOT17 dataset may have also played a part in affecting pedestrian detection performance of the models. Given the presence of substantial noise and limited preprocessing applied to the images, this factor could influence the models' performance.
+
+In addition to these factors, the specific implementation of the modified YOLOv3 model could contribute to the observed results. The study added CBAM following the results of a previous study \cite{chakarDepthwiseSeparableConvolutions2020}, and may have impacted its efficacy. Integrating CBAM in different areas, such as the detection layers of the YOLOv3 model, might yield different results.
+
+\subsection{How does the optimized YOLOv3 model compare with the baseline YOLOv3 model in terms of performance?}
+Among the model variants created, the YOLO-BAM demonstrated improvements in accuracy and loss, achieving values of 79.306\% and 2.5, respectively, compared to the baseline model's accuracy of 76.696\% and loss of 2.54. However, this enhanced performance comes with caveats, such as longer training times and a slightly lower mean Average Precision (mAP), likely due to the integration of the CBAM attention mechanism. While CBAM enhances the model's ability to detect relevant features and reduce noise, it also introduces a trade-off, resulting in reduced precision and recall.
+
+Table \ref{tab:stats} presents the comparison of p-values between YOLO-BAM and the baseline for clear images, indicating a difference in performance. However, similar performance was observed in other categories. The heightened sensitivity of YOLO-BAM may lead to increased false positive predictions, impacting overall precision. Additionally, its increased sensitivity might cause it to miss some true positive instances, contributing to false negatives and affecting recall.
+
+Transitioning from the examination of the CBAM-integrated YOLO-BAM model, the focus now shifts to an analysis of models incorporating depthwise separable convolutions, specifically, the DSC and DSCBAM variants.
+
+\subsection{How does the fusion of depthwise separable convolutions and attention blocks affect the computational cost and efficiency of YOLOv3?}
+The DSC and DSCBAM models exhibit both areas of improvement and challenges compared to the baseline YOLOv3 model. While these models achieved lower mAP values than the baseline, with DSC at 0.36 and DSCBAM at 0.38, their performance can be characterized as somewhat suboptimal in certain aspects. The reduced accuracy implies that certain finer details and nuances in object detection, including pedestrian recognition, might be compromised. The challenge of not meeting the maximum 7\% accuracy decrease criterion in the DSC and DSCBAM models underscores the complexities of balancing computational efficiency and accuracy in model optimization.
+
+Table \ref{tab:stats} highlights the comparison of p-values, revealing that the null hypothesis is rejected for all categories in both models. This further emphasizes the compromised accuracy of the DSC and DSCBAM models, posing potential limitations, particularly in tasks like pedestrian detection. However, it is important to recognize the trade-offs involved. Despite the reduction in accuracy, both the DSC and DSCBAM models exhibit significant gains in terms of parameter reduction. The introduction of depthwise separable convolutions contributes to a 71.39\% and 67.68\% reduction in parameter count compared to the baseline, respectively. This signifies a substantial enhancement in computational efficiency, aligning with the goal of developing a lightweight YOLOv3 model.
+
+While these models may not match the baseline's accuracy, the improvements in computational cost and efficiency make them viable candidates for resource-constrained applications, such as embedded systems and mobile devices. These potential scenarios often have limited processing power, memory, and energy, making it challenging to deploy complex deep learning models. By prioritizing computational efficiency without sacrificing too much accuracy, the DSC and DSCBAM models offer practical solutions for deployment in such settings. Another particular area in model reduction is the use of filter pruning.
+
+\subsection{By how much improvement would be acceptable for comparability to the baseline model through the addition of filter pruning?}
+Answering the question of acceptable improvement for comparability to the baseline model through filter pruning necessitates a consideration of the trade-offs between model efficiency and accuracy. As shown in table \ref{tab:stats}, the results revealed that the CBAM variant differs from the baseline model in terms of performance in the clear category. The results from the DSC and DSCBAM variants rejected the null hypothesis in all categories, thus concluding that their model performance in comparison to the baseline model is different. These results suggest that the architectural modifications have altered the model's behavior in select scenarios. However, the nuanced performance trade-offs observed indicate that while these variants may offer computational advantages, they may come at either the lack of improvement or expense of accuracy in other scenarios. This highlights the importance of carefully considering the specific requirements and constraints of the application when selecting model architectures. 
+
+The threshold for improvement largely depends on the specific application and the importance of maximizing accuracy while minimizing computational cost, as shown in the model variants and their respective strengths and weaknesses. For the case of pruning the baseline and YOLO-BAM models in the study, it was able to be retrained to obtain a similar level of accuracy to its unpruned counterparts, but revealed that other metrics such as mAP and loss may require more training for improvement. It may be better if a lesser amount of weights are pruned to reduce the number of bounding boxes generated within existing bounding boxes, or even avoid applying pruning as shown by the pruned DSC model. The degree of acceptable improvement will vary depending on the resource constraints and performance requirements of the given use case. In scenarios where computational resources are limited, a more substantial trade-off in accuracy might be tolerated, as presented by the pruned DSCBAM model variant achieving a higher overall FPS and faster inference time as compared to the unpruned DSCBAM variant. Conversely, applications that prioritize precision may demand minimal reductions to retain model performance, as shown in the pruned YOLO-BAM model having a lower mAP, higher loss as well as higher inference time on the MOT sequences.
