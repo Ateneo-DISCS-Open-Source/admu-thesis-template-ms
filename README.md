@@ -16,6 +16,12 @@ pdflatex --shell-escape main.tex && bibtex main && pdflatex --shell-escape main.
 
 This will produce a file called `main.pdf`.
 
+For *nix users, you may use the following bash script for convenience:
+
+```bash
+./compile.sh
+```
+
 ## Notes
 
 ### On Students with Two Advisers
